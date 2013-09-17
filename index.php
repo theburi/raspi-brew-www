@@ -13,7 +13,7 @@
  <?php
 //Open pipe and write some text to it.
 //Mode must be r+ or fopen will get stuck.
-$pipe = fopen('testpipe','r+');
+$pipe = fopen('BrewStatePipe','r+');
 $pipeoutput= fread($pipe, filesize($filename));
 fclose($pipe);
 echo $pipeoutput;
