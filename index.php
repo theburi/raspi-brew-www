@@ -1,5 +1,5 @@
 <html>
 <body>
-<?php echo '<h1> Hello World</h1>'; ?>
+<?php echo '<h1> Hello World Git</h1>'; ?>
 </body>
 </html>
