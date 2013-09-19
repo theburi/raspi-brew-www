@@ -36,7 +36,7 @@
 		{
 			echo "<tr>";
 			echo "<td>Action: </td>";
-			echo "<td> <a href =\'http://raspberrypi?Action=" . $userAction . "\'> Press to " . $userAction . " </a> </td>	";
+			echo "<td> <a href ='http://raspberrypi?Action=" . $userAction . "'> Press to " . $userAction . " </a> </td>	";
 			
 			echo "</tr>";
 		}
