@@ -9,7 +9,7 @@
 	$xmlfile = "/tmp/BrewStatePipe";
 	
 	$xmldoc = simplexml_load_file($xmlfile);
-	
+	echo "action" . $xmldoc->action;
 	//need to determine if any actions required
 		
 	
