@@ -17,7 +17,7 @@
 <table>
 	<tr>
 		<td>Step:</td>
-		<td></td>
+		<td><?= $xmldoc->step?> C</td>
 	</tr>
 	<tr>
 		<td>Temp:</td>
@@ -31,7 +31,7 @@
 	if ($xmldoc->action != '' )
 	{
 		$userAction = $xmldoc->action;
-		if (!file_exists("/tmp/" . $userAction))
+		if (!gifile_exists("/tmp/" . $userAction))
 		{
 			echo "<tr>";
 	
