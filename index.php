@@ -1,6 +1,6 @@
 <html>
 	<head>
- 		<META http-equiv="refresh" content="1"/>
+ 		<META http-equiv="refresh" content="2"/>
 	</head>
 <body>
 <?php echo '<h1> Brew Control</h1>'; ?>
@@ -9,15 +9,19 @@
 	$xmlfile = "/tmp/BrewStatePipe";
 	
 	$xmldoc = simplexml_load_file($xmlfile);
-	echo "action" . $xmldoc->action;
+
 	//need to determine if any actions required
 		
 	
 ?>
 <table>
 	<tr>
+		<td>Step:</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>Temp:</td>
-		<td><?= $xmldoc->temperature?></td>
+		<td><?= $xmldoc->temperature?> C</td>
 	</tr>
 	<tr>
 		<td colspan="2" style="background-color: <?php if ($xmldoc->heater==1) { echo"red"; } else {echo "white";}  ?>"> Heater</td>
@@ -27,7 +31,7 @@
 	if ($xmldoc->action != '' )
 	{
 		$userAction = $xmldoc->action;
-		if (file_exists("/tmp/" . $userAction))
+		if (!file_exists("/tmp/" . $userAction))
 		{
 			echo "<tr>";
 	
