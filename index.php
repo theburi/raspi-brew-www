@@ -29,11 +29,13 @@
 		$userAction = $xmldoc->action;
 		if (file_exists("/tmp/" . $userAction))
 		{
-?>
-	<tr>
-		<td onclick="navigate('http://raspberrypi?Action=<?=$userAction?>')"> Press to Action <?= $userAction?> </td>
-	</tr>
-<?php			
+			echo "<tr>";
+
+	
+		echo "<td onclick='navigate('http://raspberrypi?Action=" . $userAction . "?>')'> Press to Action " . $userAction . " </td>
+	
+			
+		echo "</tr>";
 		}
 
 
