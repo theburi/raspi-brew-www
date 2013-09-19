@@ -1,23 +1,20 @@
 <html>
+	<head>
+ 		<META http-equiv="refresh" content="1"/>
+	</head>
 <body>
 <?php echo '<h1> Brew Control</h1>'; ?>
 
 <?php
-	$xmlstr = "<state><temperature>10</temperature></state>";
+	$xmlfile = "/temp/BrewStatePipe";
 	
-	$xmldoc = new SimpleXMLElement($xmlstr);
+	$xmldoc = simplexml_load_file($xmlfile);
 	
 	echo "Temperature: " . $xmldoc->temperature;
+	echo "Heater: " . $xmldoc->heater;
  ?>
  
- <?php
-//Open pipe and write some text to it.
-//Mode must be r+ or fopen will get stuck.
-$pipe = fopen('BrewStatePipe','r+');
-$pipeoutput= fread($pipe, filesize($filename));
-fclose($pipe);
-echo $pipeoutput;
-?>
+
 
 </body>
 </html>
