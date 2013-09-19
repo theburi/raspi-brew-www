@@ -11,7 +11,7 @@
 	$xmldoc = simplexml_load_file($xmlfile);
 
 	//need to determine if any actions required
-		
+	echo $_GET['Action'];		
 	
 ?>
 <table>
@@ -31,7 +31,7 @@
 	if ($xmldoc->action != '' )
 	{
 		$userAction = $xmldoc->action;
-		echo $userAction;
+
 		if (!file_exists("/tmp/" . $userAction))
 		{
 			echo "<tr>";
