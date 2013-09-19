@@ -24,7 +24,7 @@
 	
 	</tr>
 <?php
-	if ($xmldoc->action != null )
+	if ($xmldoc->action != '' )
 	{
 		$userAction = $xmldoc->action;
 		if (file_exists("/tmp/" . $userAction))
