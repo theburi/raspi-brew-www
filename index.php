@@ -36,9 +36,17 @@
 		{
 			echo "<tr>";
 			echo "<td>Action: </td>";
-			echo "<td onclick=\'navigate(\'http://raspberrypi?Action=" . $userAction . "\')\'> Press to Action " . $userAction . " </td>	";
+			echo "<td> <a href =\'http://raspberrypi?Action=" . $userAction . "\'> Press to " . $userAction . " </a> </td>	";
 			
 			echo "</tr>";
+		}
+		else {
+			echo "<tr>";
+			echo "<td>Action: </td>";
+			echo "<td> submitting... </td>	";
+			
+			echo "</tr>";
+			
 		}
 
 
