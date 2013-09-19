@@ -11,7 +11,14 @@
 	$xmldoc = simplexml_load_file($xmlfile);
 
 	//need to determine if any actions required
-	echo $_GET['Action'];		
+	echo "Action: " . $_GET['Action'];		
+	if ($_GET['Action']!=null) 
+	{
+		file_put_contents("/tmp/" . $_GET['Action'], $_GET['Action']);
+		chmod("/tmp/" . $_GET['Action'], 777);
+	}
+
+	
 	
 ?>
 <table>
