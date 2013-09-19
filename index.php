@@ -6,7 +6,7 @@
 <?php echo '<h1> Brew Control</h1>'; ?>
 
 <?php
-	$xmlfile = "/temp/BrewStatePipe";
+	$xmlfile = "/tmp/BrewStatePipe";
 	
 	$xmldoc = simplexml_load_file($xmlfile);
 	
