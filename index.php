@@ -32,7 +32,7 @@
 	{
 		$userAction = $xmldoc->action;
 		echo $userAction;
-		if (!gifile_exists("/tmp/" . $userAction))
+		if (!file_exists("/tmp/" . $userAction))
 		{
 			echo "<tr>";
 			echo "<td>Action: </td>";
