@@ -31,7 +31,7 @@
 		{
 			echo "<tr>";
 	
-			echo "<td onclick='navigate('http://raspberrypi?Action=" . $userAction . "?>')'> Press to Action " . $userAction . " </td>	";
+			echo "<td onclick=\'navigate(\'http://raspberrypi?Action=" . $userAction . "\')\'> Press to Action " . $userAction . " </td>	";
 			
 			echo "</tr>";
 		}
