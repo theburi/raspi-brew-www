@@ -35,7 +35,7 @@
 		if (!gifile_exists("/tmp/" . $userAction))
 		{
 			echo "<tr>";
-			echo "<td>Action: </td>"
+			echo "<td>Action: </td>";
 			echo "<td onclick=\'navigate(\'http://raspberrypi?Action=" . $userAction . "\')\'> Press to Action " . $userAction . " </td>	";
 			
 			echo "</tr>";
