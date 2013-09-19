@@ -31,6 +31,7 @@
 	if ($xmldoc->action != '' )
 	{
 		$userAction = $xmldoc->action;
+		echo $userAction;
 		if (!gifile_exists("/tmp/" . $userAction))
 		{
 			echo "<tr>";
