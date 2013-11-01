@@ -1,4 +1,4 @@
 raspi-brew-www
 ==============
 
-RaSPi Web client for Brewing service
+_RaSPi Web client_ for Brewing service
