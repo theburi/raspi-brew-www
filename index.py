@@ -39,18 +39,19 @@ def app(environ, start_response):
 
     # <membership><groups><group><user/>
     SubElement(group, 'user', name='peter')
-    yield ElementTree.tostring(membership)
     try:
 
         output_file = open('membership.xml', 'w')
         output_file.write('<?xml version="1.0"?>')
         output_file.write(ElementTree.tostring(membership))
         output_file.close()
-        break
+
     except IOError as e:
         yield '<b>%s</b></br>' % e
-
-    document = ElementTree.parse('membership.xml')
+    try:
+        document = ElementTree.parse('membership.xml')
+    except IOError as e:
+        yield '<b>%s</b></br>' % e
 
     yield ElementTree.tostring(document)
 
