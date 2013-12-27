@@ -1,5 +1,5 @@
-__author__ = 'andrey'
-!/usr/bin/env python
+
+#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
 from cgi import escape
