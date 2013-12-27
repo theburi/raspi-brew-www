@@ -19,7 +19,7 @@ def app(environ, start_response):
         yield 'reading file'
         root = document.getroot()
         for child in root:
-            yield child.tag, child.attrib
+            yield '<div> %s - %s </div>' % (child.tag, child.text)
 
         yield '<table>'
 
