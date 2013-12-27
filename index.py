@@ -48,10 +48,11 @@ def app(environ, start_response):
 
     except IOError as e:
         yield '<b>%s</b></br>' % e
+
     try:
         document = ElementTree.parse('membership.xml')
-    except IOError as e:
-        yield '<b>%s</b></br>' % e
+    except :
+        yield '<b>%s</b></br>' %  sys.exc_info()[0]
 
     yield ElementTree.tostring(document)
 
