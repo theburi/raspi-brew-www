@@ -15,7 +15,7 @@ def app(environ, start_response):
     yield ''
     try:
 
-        document = ElementTree.parse('/tmp/brewstate.xml')
+        document = ElementTree.parse('/tmp/brewState.xml')
         yield ElementTree.tostring(document)
         root = document.getroot()
         for child in root:
