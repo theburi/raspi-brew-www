@@ -4,7 +4,7 @@ import sys, os
 from flup.server.fcgi import WSGIServer
 
 from xml.etree import ElementTree
-from xml.etree.ElementTree import Element
+from xml.etree.ElementTree import Element, ParseError
 from xml.etree.ElementTree import SubElement
 
 
@@ -17,7 +17,6 @@ def app(environ, start_response):
 
         document = ElementTree.parse('/tmp/brewState.xml')
         yield 'reading file'
-        yield ElementTree.tostring(document)
         root = document.getroot()
         for child in root:
             yield child.tag, child.attrib
@@ -28,7 +27,8 @@ def app(environ, start_response):
             yield '<tr><th>%s</th><td>%s</td></tr>' % (escape(k), escape(v))
         yield '</table>'
         yield '</body></html>'
-
+    except ParseError as pe:
+        yield '<p> %s <p> %s' % (pe.message, pe.text)
     except:
         yield '<b>%s</b></br>' % sys.exc_info()[0]
 
