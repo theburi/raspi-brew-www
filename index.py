@@ -46,8 +46,8 @@ def app(environ, start_response):
         output_file.write(ElementTree.tostring(membership))
         output_file.close()
 
-    except IOError as e:
-        yield '<b>%s</b></br>' % e
+    except:
+        yield '<b>%s</b></br>' % sys.exc_info()[0]
 
     try:
         document = ElementTree.parse('membership.xml')
