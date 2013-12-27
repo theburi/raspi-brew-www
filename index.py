@@ -38,6 +38,7 @@ def app(environ, start_response):
 
     # <membership><groups><group><user/>
     SubElement( group, 'user', name='peter' )
+    yield  ElementTree.tostring( membership )
 
     output_file = open( 'membership.xml', 'w' )
     output_file.write( '<?xml version="1.0"?>' )
