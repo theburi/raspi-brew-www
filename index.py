@@ -9,7 +9,7 @@ from xml.etree.ElementTree import SubElement
 
 def app(environ, start_response):
     start_response('200 OK', [('Content-Type', 'text/html')])
-    yield '<html>'
+    yield '<html><body>'
     yield '<h1>Brewing Master</h1>'
     yield ''
     # <membership/>
@@ -56,6 +56,6 @@ def app(environ, start_response):
     for k, v in sorted(environ.items()):
          yield '<tr><th>%s</th><td>%s</td></tr>' % (escape(k), escape(v))
     yield '</table>'
-    yield '</html>'
+    yield '</body></html>'
 
 WSGIServer(app).run()
