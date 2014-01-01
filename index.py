@@ -8,6 +8,8 @@ from xml.etree.ElementTree import Element, ParseError
 from xml.etree.ElementTree import SubElement
 
 
+ActionPipeName = '/tmp/ActionPipeName'
+
 def app(environ, start_response):
     start_response('200 OK', [('Content-Type', 'text/html')])
     yield '<html><body>'
@@ -21,11 +23,14 @@ def app(environ, start_response):
         for child in root:
             yield '<div> %s - %s </div>' % (child.tag, child.text)
 
-        yield '<table>'
+        output_file = ''
+        if os.path.exists(ActionPipeName):
+            output_file = open(ActionPipeName, "r")
 
-        for k, v in sorted(environ.items()):
-            yield '<tr><th>%s</th><td>%s</td></tr>' % (escape(k), escape(v))
-        yield '</table>'
+        for line in output_file:
+            [text, action, a_id] = line.split(";")
+            yield '<p> %s - %s - %s' % (text, action, a_id)
+
         yield '</body></html>'
     except ParseError as pe:
         yield '<p> %s <p> %s' % (pe.message, pe.text)
