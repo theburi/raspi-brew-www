@@ -12,7 +12,15 @@ ActionPipeName = '/tmp/ActionPipeName'
 
 def app(environ, start_response):
     start_response('200 OK', [('Content-Type', 'text/html')])
-    yield '<html><body>'
+    yield '<html><head>'
+    #yield '<script src=\"prototype.js\"></script> '
+    yield '<script src=\"//ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js\"></script>'
+    yield '<script type=\"text/javascript\">\n function go(command) {\n new Ajax.Request(\'/action.py?action=\''
+    yield '+ command , \n { onSuccess: success, onFailed: failed, method: \'GET\'}  ); $(\'log\').innerHTML += \' = success \\n<br>\';}\n'
+    yield 'function success(result) { $(\'log\').innerHTML += \' = success \\n<br>\'; }\n'
+    yield  'function failed(result) { $(\'log\').innerHTML += \' = failed \\n<br>\'; }\n </script>'
+
+    yield '</head><body>'
     yield '<h1>Brewing Master</h1>'
     yield ''
     try:
@@ -28,9 +36,12 @@ def app(environ, start_response):
             output_file = open(ActionPipeName, "r")
 
         for line in output_file:
-            [text, action, a_id] = line.split(";")
-            yield '<p> %s - %s - %s' % (text, action, a_id)
+            if len(line)>3:
+                [text, action, a_id] = line.split(";")
+                yield '%s  %s' % (action, a_id)
+                yield "<input type=\"button\" value=\"%s\" onclick=\"go(\'%s\')\">" % (action, a_id.rstrip())
 
+        yield '<div id=\"log\">Log Entries go here<br></div>'
         yield '</body></html>'
     except ParseError as pe:
         yield '<p> %s <p> %s' % (pe.message, pe.text)
