@@ -10,17 +10,20 @@ from xml.etree.ElementTree import SubElement
 
 ActionPipeName = '/tmp/ActionPipeName'
 
+
 def app(environ, start_response):
     start_response('200 OK', [('Content-Type', 'text/html')])
     yield '<html><head>'
     #yield '<script src=\"prototype.js\"></script> '
-    yield '<script src=\"//ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js\"></script>'
-    yield '<script type=\"text/javascript\">\n function go(command) {\n new Ajax.Request(\'/action.py?action=\''
-    yield '+ command , \n { onSuccess: success, onFailed: failed, method: \'GET\'}  ); $(\'log\').innerHTML += \' = success \\n<br>\';}\n'
-    yield 'function success(result) { $(\'log\').innerHTML += \' = success \\n<br>\'; }\n'
-    yield  'function failed(result) { $(\'log\').innerHTML += \' = failed \\n<br>\'; }\n </script>'
+    yield '<script src=\"http://ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js\"></script>'
 
     yield '</head><body>'
+
+    yield '<script type=\"text/javascript\">\n function go(command) { new Ajax.Request(\'/action.py?action=\''
+    yield '+ command , \n { onSuccess: success, onFailed: failed, method: \'GET\'}  ); $(\'log\').innerHTML += \' = success <br>\';}\n'
+    yield 'function success(result) { $(\'log\').innerHTML += \' = success <br>\'; }\n'
+    yield 'function failed(result) { $(\'log\').innerHTML += \' = failed <br>\'; }\n </script>'
+
     yield '<h1>Brewing Master</h1>'
     yield ''
     try:
@@ -36,7 +39,7 @@ def app(environ, start_response):
             output_file = open(ActionPipeName, "r")
 
         for line in output_file:
-            if len(line)>3:
+            if len(line) > 3:
                 [text, action, a_id] = line.split(";")
                 yield '%s  %s' % (action, a_id)
                 yield "<input type=\"button\" value=\"%s\" onclick=\"go(\'%s\')\">" % (action, a_id.rstrip())
@@ -45,9 +48,8 @@ def app(environ, start_response):
         yield '</body></html>'
     except ParseError as pe:
         yield '<p> %s <p> %s' % (pe.message, pe.text)
-    except:
-        yield '<b>%s</b></br>' % sys.exc_info()[0]
-
+    except Exception as e:
+         yield '<p> %s <p> %s' % (e.message, e.text)
 
 
 WSGIServer(app).run()
