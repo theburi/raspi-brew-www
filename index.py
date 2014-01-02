@@ -42,15 +42,17 @@ def app(environ, start_response):
                 yield '<div style=\'margin-left:20px;\'> %s - %s </div>' % (root[1].tag, root[1].text)
                 yield '<div style=\'margin-left:20px;\'> %s - %s </div>' % (root[2].tag, root[2].text)
 
-        output_file = ''
-        if os.path.exists(ActionPipeName):
-            output_file = open(ActionPipeName, "r")
+                output_file = ''
+                if os.path.exists(ActionPipeName):
+                    output_file = open(ActionPipeName, "r")
 
-        for line in output_file:
-            if len(line) > 3:
-                [text, action, a_id] = line.split(";")
-                yield '%s  %s' % (action, a_id)
-                yield "<input type=\"button\" value=\"%s\" onclick=\"go(\'%s\')\">" % (action, a_id.rstrip())
+                    for line in output_file:
+                        if len(line) > 3:
+                            [text, action, a_id] = line.split(";")
+                            yield '%s  %s' % (action, a_id)
+                            yield "<input type=\"button\" value=\"%s\" onclick=\"go(\'%s\')\">" % (action, a_id.rstrip())
+
+
 
         yield '<div id=\"log\">Log Entries go here<br></div>'
         yield '</body></html>'
