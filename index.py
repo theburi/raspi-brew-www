@@ -50,9 +50,8 @@ def app(environ, start_response):
                         if len(line) > 3:
                             [text, action, a_id] = line.split(";")
                             yield '%s  %s' % (action, a_id)
-                            yield "<input type=\"button\" value=\"%s\" onclick=\"go(\'%s\')\">" % (action, a_id.rstrip())
-
-
+                            yield "<input type=\"button\" value=\"%s\" onclick=\"go(\'%s\')\">" % (
+                                action, a_id.rstrip())
 
         yield '<div id=\"log\">Log Entries go here<br></div>'
         yield '</body></html>'
@@ -61,5 +60,6 @@ def app(environ, start_response):
         yield '<p> %s <p> %s' % (pe.message, pe.text)
     except Exception as e:
         yield '<p> %s' % e.message
+
 
 WSGIServer(app).run()
